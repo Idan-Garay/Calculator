@@ -17,6 +17,9 @@ class App extends React.Component {
     }
 
     operation(sign, val, num2) {
+        val = parseInt(val);
+        num2 = parseInt(num2);
+
         switch (sign) {
             case '+': val += num2;
                 break;
@@ -32,21 +35,24 @@ class App extends React.Component {
     }
 
     handleClick = (input) => {
-        let {sign, val, num2, isChanged} = this.state;
-        if (isNaN(input)) {
-            if (input === '=') {
-                let res = this.operation(sign, val, num2);
-                this.setState({val: res, isChanged: false});
-            } else {
-                this.setState({sign: input, isChanged: true});
-            }
+        if (input === "clear") {
+            this.setState({val: 0, num2: 0, sign: "", isChanged: false});
         } else {
-            if (isChanged) {
-                let {num1, num2} = {input, val}
-                this.setState({val: val, num2: input});
+            let {sign, val, num2, isChanged} = this.state;
+            if (isNaN(input)) {
+                if (input === '=') {
+                    let res = this.operation(sign, num2, val);
+                    this.setState({val: res, isChanged: false});
+                } else {
+                    this.setState({sign: input, isChanged: true});
+                }
             } else {
-                let res = (val === 0)? input: "" + val + input ;
-                this.setState({val: res});
+                if (isChanged) {
+                    this.setState({val: input, num2: val});
+                } else {
+                    let res = (val === 0 || !isChanged)? input: "" + val + input ;
+                    this.setState({val: res});
+                }
             }
         }
     }

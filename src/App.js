@@ -44,13 +44,15 @@ class App extends React.Component {
                     let res = this.operation(sign, num2, val);
                     this.setState({val: res, isChanged: false});
                 } else {
-                    this.setState({sign: input, isChanged: true});
+                    this.setState({sign: input, num2: val ,isChanged: true});
                 }
             } else {
                 if (isChanged) {
-                    this.setState({val: input, num2: val});
+
+                    this.setState({val: input, isChanged: false});
                 } else {
-                    let res = (val === 0 || !isChanged)? input: "" + val + input ;
+
+                    let res = (val === 0)? input: "" + val + input ;
                     this.setState({val: res});
                 }
             }

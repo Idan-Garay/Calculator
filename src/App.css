@@ -5,60 +5,29 @@
 body {
   margin: 0;
   padding: 0;
-
-  font-family: Arial, Helvetica, sans-serif;
 }
 
-.no-m-p {
-  margin: 0;
-  padding: 0;
+.screen {
+  height: 80px;
+  min-width: 300px;
+  border: 1px solid saddlebrown;
+  text-align: right;
+  padding-right: 5px;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  border: 1px solid blueviolet;
+  border-collapse: collapse;
+}
+
+td {
+  height: 60px;
+  width: 60px;
+  border: 1px solid saddlebrown;
 }
 
 .content {
   width: 300px;
-  height: 100px;
-  margin: 0 auto;
-}
-
-.screen {
-  border: 1px solid black;
-  height: 100%;
-  width: 100%;
-  text-align: right;
-  padding: 0px 5px;
-  background-color: #443437;
-  color:  white;
-}
-
-.screen-val {
-  font-size: 40px;
-}
-
-Table {
-  height: 100%;
-  width: 100%;
-  border: none;
-  text-align: right;
-}
-
-.number-btn {
-  border: 1px solid #921528;
-  height: 70px;
-  min-width: 60px;
-  font-size: 40px;
-  font-weight: bold;
-  text-align: center;
-  color: black;
-  background-color: white;
-}
-
-.sign-btn {
-  border: 1px solid #921528;
-  height: 70px;
-  min-width: 60px;
-  font-size: 40px;
-  font-weight: bold;
-  color: white;
-  background-color: #D12D4D;
-  text-align: center;
 }

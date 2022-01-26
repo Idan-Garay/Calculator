@@ -7,6 +7,7 @@ interface Props {
 export default function Screen({value = 0}: Props) {
     return (
         <div className="screen">
+            <p>Prev calc.</p>
             <h1>{value}</h1>
         </div>
     );

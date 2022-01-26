@@ -54,10 +54,11 @@ function App() {
                   break;
 
         case 'x': n1 = n1! * n2!;
-        break;
+                  break;
 
         case '/': n1 = n1! / n2!;
                   break;
+        case '%': n1 = n1! % n2!;
       }
       return n1;
   }

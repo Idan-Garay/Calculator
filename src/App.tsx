@@ -2,7 +2,7 @@ import React, { useReducer} from 'react';
 import './App.css';
 import Screen from './components/Screen';
 import Table from './components/Table';
-import {ArithmeticData, CalculatorAction} from './customTypes';
+import {ArithmeticData, CalculatorAction, DO_OPERATION, UPDATE_OPERATION, UPDATE_NUMBER, IS_APPEND, CLEAR, DECIMAL} from './customTypes';
 
 const initialState = {
   n1: 0,
@@ -12,13 +12,6 @@ const initialState = {
   isDecimal: false,
   equal: false
 }
-
-const DO_OPERATION = "Do Operation";
-const UPDATE_OPERATION = "Change Operation";
-const UPDATE_NUMBER = "Change Number";
-const IS_APPEND = "Is Append";
-const CLEAR = "Clear";
-const DECIMAL = "Decimal";
 
 const calculatorReducer = (state:ArithmeticData, action: CalculatorAction):ArithmeticData => {
   switch (action.type) {
@@ -60,7 +53,7 @@ const calculatorReducer = (state:ArithmeticData, action: CalculatorAction):Arith
       return {...state, n1:n2, n2:res, sign: action.payload, isAppend: false, equal: false};
     }
     case UPDATE_NUMBER: {
-      let {n1, n2, isAppend} = state;
+      let {n2, isAppend} = state;
       let newState = {...state};
       
       if (isAppend)
@@ -95,58 +88,7 @@ const calculatorReducer = (state:ArithmeticData, action: CalculatorAction):Arith
 }
 
 function App() {
-  // const [props, setProps] = useState<ArithmeticData>({n1:0, n2: 0, sign: '', isChanged: false});
   const [state, dispatch] = useReducer(calculatorReducer, initialState);
-
-  // function handleClick(input:number | string) {
-  //   let {n1, n2, sign, isChanged} = props;
-
-  //   if (typeof input === 'number') {
-  //     if (isChanged) {
-  //       n2 = n1;
-  //       n1 = input;
-  //       isChanged = false; 
-  //       n1 = operation({n1, n2, sign});
-  //     } else {
-  //       n1 = +(''+ n1 +input);
-  //     }
-
-  //   } else {
-
-  //     if (input === 'clear') {
-  //       setProps({n1: 0, n2: 0, sign: '', isChanged: false});
-  //       return;
-  //     }
-
-  //     if (input === '=') {
-  //       n1 = operation({n1, n2, sign});
-  //       isChanged = true; 
-  //     } else {
-  //       isChanged = true;
-  //       sign = input;
-  //     }
-  //   }
-
-  //   setProps({n1, n2, sign, isChanged});
-  // }
-
-  // const operation = ({n1, n2, sign}: ArithmeticData) => {
-  //     [n1,n2] = [n2,n1];
-  //     switch(sign) {
-  //       case '+': n1 = n1! + n2!;
-  //                 break;
-  //       case '-': n1 = n1! - n2!;
-  //                 break;
-
-  //       case 'x': n1 = n1! * n2!;
-  //                 break;
-
-  //       case '/': n1 = n1! / n2!;
-  //                 break;
-  //       case '%': n1 = n1! % n2!;
-  //     }
-  //     return n1;
-  // }
 
   return (
     <div className="content">

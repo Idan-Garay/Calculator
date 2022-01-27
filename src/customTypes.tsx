@@ -29,3 +29,10 @@ export type CalculatorAction =
 export interface TableProps {
   dispatch: React.Dispatch<CalculatorAction>
 }
+
+export const DO_OPERATION = "Do Operation";
+export const UPDATE_OPERATION = "Change Operation";
+export const UPDATE_NUMBER = "Change Number";
+export const IS_APPEND = "Is Append";
+export const CLEAR = "Clear";
+export const DECIMAL = "Decimal";

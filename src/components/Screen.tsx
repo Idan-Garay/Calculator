@@ -1,10 +1,7 @@
 import React from 'react';
+import {ScreenProps} from '../customTypes';
 
-interface Props {
-    value: Number,
-}
-
-export default function Screen({value = 0}: Props) {
+export default function Screen({value = 0}: ScreenProps) {
     return (
         <div className="screen">
             <p>Prev calc.</p>

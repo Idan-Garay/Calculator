@@ -2,14 +2,14 @@ import React, {useState, useReducer} from 'react';
 import './App.css';
 import Screen from './components/Screen';
 import Table from './components/Table';
-import {ArithmeticData, CalculatorAction} from './customTypes'
-
+import {ArithmeticData, CalculatorAction} from './customTypes';
 
 const initialState = {
   n1: 0,
   n2: 0,
   sign: '',
   isAppend: true,
+  isDecimal: false,
 }
 
 const DO_OPERATION = "Do Operation";
@@ -17,6 +17,7 @@ const UPDATE_OPERATION = "Change Operation";
 const UPDATE_NUMBER = "Change Number";
 const IS_APPEND = "Is Append";
 const CLEAR = "Clear";
+const DECIMAL = "Decimal";
 
 const calculatorReducer = (state:ArithmeticData, action: CalculatorAction):ArithmeticData => {
   switch (action.type) {
@@ -39,8 +40,23 @@ const calculatorReducer = (state:ArithmeticData, action: CalculatorAction):Arith
       return {...state, n2: res};
     }
     case UPDATE_OPERATION: {  
+      let {n1, n2, sign} = state;
+      let res = n2;
 
-      return {...state, sign: action.payload, isAppend: false};
+      if (n1 !== 0 && n2 !== 0) {
+        if (sign === '+')
+          res = n1 + n2;
+        else if (sign === '-')
+          res = n1 - n2;
+        else if (sign === '*')
+          res = n1 * n2;
+        else if (sign === '/')
+          res = n1 / n2;
+        else if (sign === '%')
+          res = n1 % n2;
+      }
+
+      return {...state, n2:res, sign: action.payload, isAppend: false};
     }
     case UPDATE_NUMBER: {
       let {n1, n2, isAppend} = state;
@@ -54,6 +70,13 @@ const calculatorReducer = (state:ArithmeticData, action: CalculatorAction):Arith
         newState.isAppend = true;
       }
 
+      if (newState.isDecimal) {
+        n2 = +(n2.toString().concat(action.payload.toString()));
+        n2 /= 10;
+        newState.n2 = n2;
+        newState.isDecimal = false;
+      }
+
       return newState;
     }
     case IS_APPEND: {
@@ -61,6 +84,10 @@ const calculatorReducer = (state:ArithmeticData, action: CalculatorAction):Arith
     }
     case CLEAR: {
       return {...initialState};
+    }
+    case DECIMAL: {
+
+      return {...state, isDecimal: true};
     }
     default: return state;
   }
@@ -122,7 +149,7 @@ function App() {
 
   return (
     <div className="content">
-      <Screen value={state.n2}/>
+      <Screen value={state.n2} isDecimal={state.isDecimal}/>
       <Table dispatch={dispatch}/>
     </div>
   );

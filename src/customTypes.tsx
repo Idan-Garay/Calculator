@@ -5,6 +5,7 @@ export interface ArithmeticData {
   n2: number,
   sign: string,
   isAppend: boolean,
+  isDecimal: boolean,
   // history: Array<Array<string | number>>
 }
 
@@ -14,7 +15,8 @@ export interface Action {
 }
 
 export interface ScreenProps {
-  value: number
+  value: number,
+  isDecimal: boolean,
 }
 
 export type CalculatorAction = 
@@ -22,6 +24,7 @@ export type CalculatorAction =
 | {type: 'Change Number', payload: number}
 | {type: "Is Append", payload: boolean}
 | {type: "Clear"}
+| {type: "Decimal", payload: '.'}
 
 export interface TableProps {
   dispatch: React.Dispatch<CalculatorAction>

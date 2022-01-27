@@ -1,4 +1,4 @@
-import React, {useState, useReducer} from 'react';
+import React, { useReducer} from 'react';
 import './App.css';
 import Screen from './components/Screen';
 import Table from './components/Table';
@@ -10,6 +10,7 @@ const initialState = {
   sign: '',
   isAppend: true,
   isDecimal: false,
+  equal: false
 }
 
 const DO_OPERATION = "Do Operation";
@@ -24,39 +25,39 @@ const calculatorReducer = (state:ArithmeticData, action: CalculatorAction):Arith
     case DO_OPERATION: {
       const {sign} = state;
       let {n1, n2} = state;
-      let res = 0;
+      let res = n2;
 
       if (sign === '+')
         res = n1 + n2;
       else if (sign === '-')
         res = n1 - n2;
-      else if (sign === '*')
+      else if (sign === 'x')
         res = n1 * n2;
       else if (sign === '/')
         res = n1 / n2;
       else if (sign === '%')
         res = n1 % n2;
 
-      return {...state, n2: res};
+      return {...state, n1: n2, n2: res, equal: true};
     }
     case UPDATE_OPERATION: {  
-      let {n1, n2, sign} = state;
+      let {n1, n2, sign, equal} = state;
       let res = n2;
 
-      if (n1 !== 0 && n2 !== 0) {
+      if (!equal) {
         if (sign === '+')
           res = n1 + n2;
         else if (sign === '-')
           res = n1 - n2;
-        else if (sign === '*')
+        else if (sign === 'x')
           res = n1 * n2;
         else if (sign === '/')
           res = n1 / n2;
         else if (sign === '%')
           res = n1 % n2;
-      }
+      } 
 
-      return {...state, n2:res, sign: action.payload, isAppend: false};
+      return {...state, n1:n2, n2:res, sign: action.payload, isAppend: false, equal: false};
     }
     case UPDATE_NUMBER: {
       let {n1, n2, isAppend} = state;

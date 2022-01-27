@@ -6,7 +6,7 @@ export interface ArithmeticData {
   sign: string,
   isAppend: boolean,
   isDecimal: boolean,
-  // history: Array<Array<string | number>>
+  equal: boolean
 }
 
 export interface Action {

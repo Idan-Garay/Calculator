@@ -91,7 +91,7 @@ body {
   color: #f7fdfd;
   width: 350px;
   margin: 0 auto;
-  margin-top: 5em;
+  margin-top: 5rem;
 }
 
 .screen {
@@ -102,7 +102,7 @@ body {
   padding-right: 5px;
   border-bottom: 1px solid #1f7db7;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
 }
 
 .blue {
@@ -114,9 +114,11 @@ body {
 }
 
 h1 {
-  padding: 0;
+  padding: 0 5px;
   margin: 0;
-  text-size-adjust: auto;
+  line-height: 1.45;
+  font-size: 2.5em;
+  overflow-x: scroll;
 }
 
 table {

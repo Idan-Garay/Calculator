@@ -2,15 +2,8 @@ import React, {useState, useReducer} from 'react';
 import './App.css';
 import Screen from './components/Screen';
 import Table from './components/Table';
-import {CalculatorAction} from './customTypes'
+import {ArithmeticData, CalculatorAction} from './customTypes'
 
-interface ArithmeticData {
-  n1: number,
-  n2: number,
-  sign: string,
-  isAppend: boolean,
-  // history: Array<Array<string | number>>
-}
 
 const initialState = {
   n1: 0,

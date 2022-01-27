@@ -34,7 +34,7 @@ const Table = ({dispatch}: TableProps) => {
                     </tr>
                     <tr>
                         <td colSpan={2} onClick={e => dispatch({type: "Change Number", payload: 0})}>0</td>
-                        <td onClick={e =>dispatch({type: "Change Operation", payload: '.'})}>.</td>
+                        <td onClick={e =>dispatch({type: "Change Number", payload: '.'})}>.</td>
                         <td className="blue" onClick={e => dispatch({type: "Do Operation", payload: '='})}>=</td>
                     </tr>
                 </tbody>

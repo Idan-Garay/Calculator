@@ -4,7 +4,7 @@ export interface ArithmeticData {
   n1: number,
   n2: number,
   sign: string,
-  isChanged?: boolean,
+  isAppend: boolean,
   // history: Array<Array<string | number>>
 }
 
